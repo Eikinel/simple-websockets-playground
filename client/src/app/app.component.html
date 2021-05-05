@@ -1,0 +1,25 @@
+<div class="app">
+  <div class="text">Current user: <b>{{ clientId }}</b></div>
+
+  <div class="geometry-container">
+    <span class="geometry-wrapper" [class.clicked]="sseMessage.content === 'circle'">
+      <div class="geometry circle" (click)="sendMessage('circle')"></div>
+    </span>
+
+    <span class="geometry-wrapper" [class.clicked]="sseMessage.content === 'triangle'">
+      <div class="geometry triangle" (click)="sendMessage('triangle')"></div>
+    </span>
+
+    <span class="geometry-wrapper" [class.clicked]="sseMessage.content === 'square'">
+      <div class="geometry square" (click)="sendMessage('square')"></div>
+    </span>
+  </div>
+
+  <div class="text">
+    <ng-container *ngIf="sseMessage.sender && sseMessage.content; else noContent">
+      <b>{{ sseMessage.sender }}</b> clicked on <b>{{ sseMessage.content }}</b> !
+    </ng-container>
+
+    <ng-template #noContent>{{ 'Nobody clicked yet.' }}</ng-template>
+  </div>
+</div>
